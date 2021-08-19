@@ -1,0 +1,34 @@
+---
+version: '3.6'
+
+volumes:
+# TODO add named volumes
+  frontend:
+  backend:
+  db:
+
+services:
+
+  frontend:
+    container_name: frontend
+    depends_on:
+      - backend
+    volumes:
+      - "frontend:/usr/src/app/frontend"
+
+  backend:
+    container_name: backend
+    depends_on:
+      - db
+    volumes:
+      - "backend:/usr/src/app/backend"
+
+  db:
+    container_name: db
+    image: redis:latest
+    ports:
+        - 6379:6379
+    environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - "db:/var/lib/redis"
