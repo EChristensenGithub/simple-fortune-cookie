@@ -1,13 +1,9 @@
-FROM golang:1.16-alpine
+FROM golang:1.17-alpine
 
-WORKDIR /app/frontend
-
-COPY go.mod ./
-
-RUN go mod download
+WORKDIR /app
 
 COPY . ./
 
-RUN go build -o ./
+RUN go build -o /frontend
 
-CMD ["go", "run", "frontend"]
+CMD ["/frontend"]

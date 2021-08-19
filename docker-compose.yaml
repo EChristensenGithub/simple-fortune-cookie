@@ -1,5 +1,5 @@
 ---
-version: '3.6'
+version: '3'
 
 volumes:
 # TODO add named volumes
@@ -11,24 +11,37 @@ services:
 
   frontend:
     container_name: frontend
+    build: ./frontend
+    ports:
+      - "8080:8080"
     depends_on:
       - backend
     volumes:
       - "frontend:/usr/src/app/frontend"
+    environment:
+        BACKEND_DNS: backend
+        BACKEND_PORT: 9000
 
   backend:
     container_name: backend
+    build: ./backend
+    ports:
+      - "9000:9000"
     depends_on:
       - db
     volumes:
       - "backend:/usr/src/app/backend"
+    environment:
+        REDIS_DNS: db
+
 
   db:
     container_name: db
-    image: redis:latest
+    image: redis:alpine
+    command: redis-server
     ports:
-        - 6379:6379
+      - 6379:6379
     environment:
-        - ALLOW_EMPTY_PASSWORD=yes
+      - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - "db:/var/lib/redis"
