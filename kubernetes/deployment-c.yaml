@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deployment-c
+  name: deployment-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-c
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: deployment-c
+    spec:
+      containers:
+      - image: eficodeacademy/devopsacademyc:latest
+        name: devopsacademyc
+        resources: {}
+        env:
+        - name: KEY
+          valueFrom:
+            configMapKeyRef:
+              name: deployment-c-configmap
+              key: KEY
+status: {}
