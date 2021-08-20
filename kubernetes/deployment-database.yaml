@@ -17,4 +17,7 @@ spec:
       containers:
       - image: redis:alpine
         name: redisdb
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: yes
 status: {}

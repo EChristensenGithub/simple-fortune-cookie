@@ -17,3 +17,6 @@ spec:
       containers:
       - image: dock231/backend:latest
         name: simple-fortune-cookie-backend
+        env:
+        - name: REDIS_DNS
+          value: ./deployment-database.yaml

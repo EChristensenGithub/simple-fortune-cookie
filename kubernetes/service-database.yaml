@@ -11,6 +11,6 @@ spec:
     targetPort: 6379
   selector:
     app: deployment-db
-  type: NodePort
+  type: ClusterIP
 status:
   loadBalancer: {}
