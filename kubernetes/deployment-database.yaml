@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-db
+  name: deployment-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-db
+  template:
+    metadata:
+      labels:
+        app: deployment-db
+    spec:
+      containers:
+      - image: redis:alpine
+        name: redisdb
+status: {}
