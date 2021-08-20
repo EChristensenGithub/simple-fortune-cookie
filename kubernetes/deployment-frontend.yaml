@@ -17,3 +17,9 @@ spec:
       containers:
       - image: dock231/frontend:latest
         name: simple-fortune-cookie-frontend
+        env:
+        - name: BACKEND_DNS
+          value: ./deployment-backend.yaml
+        - name: BACKEND_PORT
+          value: 9000
+
