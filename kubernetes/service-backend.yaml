@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: deployment-frontend
+  name: service-frontend
+spec:
+  ports:
+  - port: 9000
+    targetPort: 9000
+  selector:
+    app: deployment-frontend
+  type: ClusterIP
+status:
+  loadBalancer: {}
