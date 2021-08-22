@@ -2,24 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: frontend
-  name: frontend
+    app: deployment-frontend
+  name: deployment-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: deployment-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: deployment-frontend
     spec:
       containers:
       - image: dock231/frontend:latest
         name: simple-fortune-cookie-frontend
+        ports: 
+        - containerPort: 8080
         env:
         - name: BACKEND_DNS
-          value: ./deployment-backend.yaml
+          value: service-backend
         - name: BACKEND_PORT
-          value: 9000
+          value: "9000"
 

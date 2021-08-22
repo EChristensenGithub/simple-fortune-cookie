@@ -2,21 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: backend
-  name: backend
+    app: deployment-backend
+  name: deployment-backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: deployment-backend
   template:
     metadata:
       labels:
-        app: backend
+        app: deployment-backend
     spec:
       containers:
       - image: dock231/backend:latest
         name: simple-fortune-cookie-backend
+        ports: 
+        - containerPort: 9000
         env:
         - name: REDIS_DNS
-          value: ./deployment-database.yaml
+          value: service-db
+
