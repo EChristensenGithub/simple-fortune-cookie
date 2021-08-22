@@ -44,4 +44,4 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - "db:/var/lib/redis"
+      - "db:redis/data"
